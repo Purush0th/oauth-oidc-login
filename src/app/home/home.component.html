@@ -1,0 +1,14 @@
+<p>
+  home works!
+</p>
+<div *ngIf="givenName">
+  <h2>Welcome, {{givenName}}!</h2>
+  <button (click)="logout()">Logout</button>
+  <p>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+  </p>
+</div>
+
+<div *ngIf="!givenName">
+  <button (click)="login()">Login</button>
+</div>
