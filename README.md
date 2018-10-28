@@ -2,6 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
+## Setup
+* Clone this repo
+* Run `npm install`
+* Change your OAuth ID server details in `authConfig` (shared/auth/auth.config.constant.ts)
+
+## Test Credentials
+```
+test-okta@mailinator.com 
+Passwd@123
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
