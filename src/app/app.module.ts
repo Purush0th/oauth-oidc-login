@@ -5,15 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule, AuthConfig, OAuthStorage, JwksValidationHandler, ValidationHandler } from 'angular-oauth2-oidc';
 import { AuthGuard } from './shared/auth/auth.guard.service';
 import { HttpClientModule } from '@angular/common/http';
+import { authConfig } from './shared/auth/auth.config.constant';
+import { FallbackComponent } from './fallback/fallback.component';
+import { AuthTokenService } from './shared/auth/auth.token.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    FallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     OAuthModule.forRoot()
   ],
-  providers: [AuthGuard],
+  providers: [
+    { provide: AuthConfig, useValue: authConfig },
+    { provide: ValidationHandler, useClass: JwksValidationHandler },
+    { provide: OAuthStorage, useValue: localStorage },
+    AuthGuard,
+    AuthTokenService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
